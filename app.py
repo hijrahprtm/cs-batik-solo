@@ -1,5 +1,8 @@
 import streamlit as st
 import os
+os.environ["PROTOCOL_BUFFERS_PYTHON_IMPLEMENTATION"] = "python"
+
+import streamlit as st
 
 # TRICK UNTUK CHROMADB DI STREAMLIT CLOUD
 __import__('pysqlite3')
