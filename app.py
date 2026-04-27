@@ -32,15 +32,14 @@ def load_db():
     if not os.path.exists(db_path):
         return None
     try:
-        # Menggunakan konfigurasi dasar untuk menghindari error kolom
+        # Menggunakan konfigurasi dasar untuk menghindari error versi SQLite/Chroma
         client_chroma = chromadb.PersistentClient(path=db_path)
         colls = client_chroma.list_collections()
         if colls:
-            # Ambil koleksi pertama yang tersedia
+            # Otomatis ambil koleksi pertama yang tersedia
             return client_chroma.get_collection(name=colls[0].name)
-    except Exception as e:
-        # Jika database error (seperti masalah 'collections.topic'), kita biarkan None
-        # Agar aplikasi tetap jalan meski tanpa database lokal
+    except Exception:
+        # Jika database error, aplikasi tetap jalan sebagai AI biasa
         return None
     return None
 
@@ -70,25 +69,28 @@ if prompt := st.chat_input("Wonten ingkang saged dipun bantu?"):
                 context_data = results['documents'][0][0]
         except:
             context_data = "Info umum toko batik Solo."
-    else:
-        context_data = "Info umum toko batik Solo."
+    
+    # Pastikan context minimal berisi instruksi dasar jika database gagal
+    if not context_data:
+        context_data = "Info umum toko batik Solo, layani kanthi ramah."
 
     # Kirim ke Groq AI
     with st.chat_message("assistant"):
         response_placeholder = st.empty()
         full_response = ""
         
-        # System Prompt yang lebih kuat
+        # System Prompt menggunakan model terbaru
         prompt_system = f"""
         Sampeyan minangka Customer Service Toko Batik Solo ingkang sopan banget.
         Gunakake Basa Jawa krama alus.
         Yen ana pitakon alamat utawa stok, gunakake referensi iki: {context_data}
-        Yen data ora ana, jawab nganggo kawruh umum babagan batik Solo kanthi sopan.
+        Yen data ora ana ing referensi, jawab nganggo kawruh umum babagan batik Solo kanthi sopan.
         """
         
         try:
+            # MENGGUNAKAN MODEL TERBARU (llama-3.3-70b-versatile)
             completion = client_groq.chat.completions.create(
-                model="llama3-8b-8192",
+                model="llama-3.3-70b-versatile",
                 messages=[
                     {"role": "system", "content": prompt_system},
                     *[{"role": m["role"], "content": m["content"]} for m in st.session_state.messages]
