@@ -2,3 +2,4 @@ streamlit
 chromadb==0.4.15
 groq
 pysqlite3-binary
+protobuf==4.24.4
