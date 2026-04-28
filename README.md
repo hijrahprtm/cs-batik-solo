@@ -2,10 +2,10 @@ Ai Asisstant for Batik Solo Store (Javaneses Companies)
 
 What can you ask the Assistant?
 The system is designed to handle complex, data-driven queries such as:
-🔹 Inventory & Placement: "Where is the Sogan Batik motif located?" (The AI will pinpoint the exact shelf/etalase from the database). 
-🔹 Operational Details: "What are the store's opening hours and the exact address in Solo?" 
-🔹 Product Knowledge: "Do you have Parang motifs in a specific color or for a wedding event?" 
-🔹 Service Etiquette: Customers can interact in Javanese or Indonesian, and the AI will maintain a professional, respectful tone.
+- Inventory & Placement: "Where is the Sogan Batik motif located?" (The AI will pinpoint the exact shelf/etalase from the database). 
+- Operational Details: "What are the store's opening hours and the exact address in Solo?" 
+- Product Knowledge: "Do you have Parang motifs in a specific color or for a wedding event?" 
+- Service Etiquette: Customers can interact in Javanese or Indonesian, and the AI will maintain a professional, respectful tone.
 
 - This made from RAG (Retrieval Augmented Generation) so Model can seeing the information first from database before model answer the prompt.
 - 4gb LLama 3 for eficiency cost for company
