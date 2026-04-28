@@ -1,5 +1,7 @@
 Ai Asisstant for Batik Solo Store (Javaneses Companies)
 
+https://cs-batik-solo.streamlit.app/
+
 What can you ask the Assistant?
 The system is designed to handle complex, data-driven queries such as:
 - Inventory & Placement: "Where is the Sogan Batik motif located?" (The AI will pinpoint the exact shelf/etalase from the database). 
